@@ -67,3 +67,17 @@ using TodoApi.Models;
 builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 ```
+### Scafold Controller
+
+Right-click the Controllers folder.
+
+Select Add > New Scaffolded Item.
+
+Select API Controller with actions, using Entity Framework, and then select Add.
+
+In the Add API Controller with actions, using Entity Framework dialog:
+
+Select TodoItem (TodoApi.Models) in the Model class.
+Select TodoContext (TodoApi.Models) in the Data context class.
+Select Add.
+If the scaffolding operation fails, select Add to try scaffolding a second time.
