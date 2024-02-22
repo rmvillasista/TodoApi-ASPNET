@@ -21,7 +21,7 @@
 ### Create Models
 
 1. In Solution Explorer, right-click the project. Select Add > New Folder. Name the folder Models.
-2. Right-click the Models folder and select Add > Class. Name the class TodoItem and select Add.
+2. Right-click the Models folder and select Add > Class. Name the class TodoItem.cs and select Add.
 3. Replace the template code with the following:
 
 ```
@@ -38,7 +38,7 @@ public class TodoItem
 
 ### Create Context
 
-1. Right-click the Models folder and select Add > Class. Name the class TodoContext and click Add.
+1. Right-click the Models folder and select Add > Class. Name the class TodoContext.cs and click Add.
 
 ```
 using Microsoft.EntityFrameworkCore;
@@ -54,4 +54,16 @@ public class TodoContext : DbContext
 
     public DbSet<TodoItem> TodoItems { get; set; } = null!;
 }
+```
+
+### Register Context
+
+Update Program.cs with the following highlighted code:
+
+```
+using Microsoft.EntityFrameworkCore;
+using TodoApi.Models;
+
+builder.Services.AddDbContext<TodoContext>(opt =>
+    opt.UseInMemoryDatabase("TodoList"));
 ```
