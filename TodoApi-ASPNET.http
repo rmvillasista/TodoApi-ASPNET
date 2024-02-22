@@ -1,0 +1,6 @@
+@TodoApi_ASPNET_HostAddress = http://localhost:5001
+
+GET {{TodoApi_ASPNET_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
