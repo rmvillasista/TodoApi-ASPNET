@@ -81,3 +81,29 @@ Select TodoItem (TodoApi.Models) in the Model class.
 Select TodoContext (TodoApi.Models) in the Data context class.
 Select Add.
 If the scaffolding operation fails, select Add to try scaffolding a second time.
+
+### Update the PostTodo create method 
+
+Update the return statement in the PostTodoItem to use the nameof operator:
+
+The preceding code is an HTTP POST method, as indicated by the [HttpPost] attribute. The method gets the value of the TodoItem from the body of the HTTP request.
+
+For more information, see Attribute routing with Http[Verb] attributes.
+
+The CreatedAtAction method:
+
+> Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+> Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. For more information, see 10.2.2 201 Created.
+> References the GetTodoItem action to create the Location header's URI. The C# nameof keyword is used to avoid hard-coding the action name in the CreatedAtAction call.
+
+```
+[HttpPost]
+public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+{
+    _context.TodoItems.Add(todoItem);
+    await _context.SaveChangesAsync();
+
+    //    return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+    return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+}
+```
